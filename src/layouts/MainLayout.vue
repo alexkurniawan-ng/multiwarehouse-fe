@@ -12,10 +12,8 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Multiwarehouse App
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -30,11 +28,13 @@
           header
           class="text-grey-8"
         >
-          Essential Links
+          Welcome
         </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
+          type="a"
+          :to="link.link"
           v-bind="link"
         />
       </q-list>
@@ -51,28 +51,22 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
+    title: 'Product',
+    caption: 'Browser products',
     icon: 'school',
-    link: 'https://quasar.dev'
+    link: { name: 'PageProduct' }
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
+    title: 'Warehouse',
+    caption: 'List of warehouse',
     icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    link: { name: 'PageWarehouseList' }
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
+    title: 'Cart',
+    caption: 'Checkout page',
     icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
+    link: { name: 'PageCart'}
   },
   {
     title: 'Twitter',
@@ -81,16 +75,17 @@ const linksData = [
     link: 'https://twitter.quasar.dev'
   },
   {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
+    title: 'Profile',
+    caption: 'Edit Profile',
     icon: 'public',
-    link: 'https://facebook.quasar.dev'
+    link: { name: 'PageProfile' }
   },
   {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+    title: 'Logout',
+    caption: 'Logout from App',
+    icon: 'code',
+    // icon: 'favorite',
+    link: { name: 'PageAuthenticationLogout' }
   }
 ]
 
@@ -104,6 +99,23 @@ export default {
       leftDrawerOpen: false,
       essentialLinks: linksData
     }
+  },
+  mounted() {
+    this.$store.dispatch('authentication/check')
+      .catch((err) => {
+        if (err.response.status === 401) {
+          this.$router.push({ name: 'PageAuthenticationLogout' });
+          this.NotifyResponseError(err.response, 'data');
+        }
+        if (err.response.status === 403) {
+          this.$router.push({ name: 'PageAuthenticationLogout' });
+          this.NotifyResponseErrorWithCaption('Email not found');
+        }
+        if (err.response.status === 404) {
+          this.$router.push({ name: 'PageAuthenticationLogout' });
+          this.NotifyResponseError(err.response, 'data');
+        }
+      });
   }
 }
 </script>

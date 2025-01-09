@@ -1,6 +1,8 @@
 <template>
   <div id="q-app">
-    <router-view />
+    <div class="testing">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -9,3 +11,10 @@ export default {
   name: 'App'
 }
 </script>
+
+<style scoped>
+.testing {
+  margin: 0 auto;
+}
+</style>
+<!-- max-width: 500px; -->
