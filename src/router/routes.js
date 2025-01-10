@@ -2,6 +2,7 @@ import routeLogin from './login';
 import routeHome from './home';
 import routeLogout from './logout';
 import routeWarehouse from './warehouse';
+import routeProduct from './product';
 
 const routes = [
   // {
@@ -15,6 +16,7 @@ const routes = [
   routeHome,
   routeLogout,
   routeWarehouse,
+  routeProduct,
 
   // Always leave this as last one,
   // but you can also remove it

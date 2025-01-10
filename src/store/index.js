@@ -4,6 +4,7 @@ import api from './api';
 import app from './app';
 import authentication from './authentication';
 import warehouse from './warehouse';
+import product from './product';
 
 Vue.use(Vuex);
 
@@ -23,6 +24,7 @@ export default function (/* { ssrContext } */) {
       app,
       authentication,
       warehouse,
+      product,
     },
 
     // enable strict mode (adds overhead!)

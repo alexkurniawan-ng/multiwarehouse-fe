@@ -37,6 +37,7 @@ export default function () {
     },
     product: {
       index: '/product',
+      category: '/product/category',
     //   create: '/product/create',
     //   update: '/product/update',
     //   delete: '/product/delete',

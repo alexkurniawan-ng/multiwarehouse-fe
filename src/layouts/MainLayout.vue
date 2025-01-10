@@ -28,8 +28,17 @@
           header
           class="text-grey-8"
         >
-          Welcome
+          Welcome <span class="text-bold">{{ fullName }}</span>
         </q-item-label>
+        <template v-if="isAdmin">
+          <EssentialLink
+            v-for="link in adminLinks"
+            :key="link.title"
+            type="a"
+            :to="link.link"
+            v-bind="link"
+          />
+        </template>
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -49,18 +58,21 @@
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
 
-const linksData = [
-  {
-    title: 'Product',
-    caption: 'Browser products',
-    icon: 'school',
-    link: { name: 'PageProduct' }
-  },
+const adminsMenu = [
   {
     title: 'Warehouse',
     caption: 'List of warehouse',
     icon: 'chat',
     link: { name: 'PageWarehouseList' }
+  },
+]
+
+const linksData = [
+  {
+    title: 'Product',
+    caption: 'Browser products',
+    icon: 'school',
+    link: { name: 'PageProductList' }
   },
   {
     title: 'Cart',
@@ -97,11 +109,19 @@ export default {
   data () {
     return {
       leftDrawerOpen: false,
-      essentialLinks: linksData
+      essentialLinks: linksData,
+      adminLinks: adminsMenu,
+      isAdmin: false,
+      fullName: '',
     }
   },
   mounted() {
+    this.isAdmin = localStorage.getItem('roles') !== 'user'
     this.$store.dispatch('authentication/check')
+      .then((response) => {
+        window.localStorage.setItem('fullName', response.fullName);
+        this.fullName = response.fullName;
+      })
       .catch((err) => {
         if (err.response.status === 401) {
           this.$router.push({ name: 'PageAuthenticationLogout' });

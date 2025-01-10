@@ -1,32 +1,36 @@
 <template>
   <q-page>
     <div class="q-pa-md">
-      <q-btn
-        flat
-        no-caps
-        class="col-auto btn-back"
-        icon="img:images/icons/back.svg"
-        @click="onClickBackButton"
-      />
-      <q-input class="q-my-md" type="text" v-model="warehouseDetail.name" label="Name" :readonly="!isSuperAdmin" />
-      <q-input class="q-my-md" type="text" v-model="warehouseDetail.description" label="Description" :readonly="!isSuperAdmin" />
-      <q-input class="q-my-md" type="text" v-model="warehouseDetail.street" label="Street" :readonly="!isSuperAdmin" />
-      <q-input class="q-my-md" type="text" v-model="warehouseDetail.city" label="City" :readonly="!isSuperAdmin" />
-      <q-input class="q-my-md" type="text" v-model="warehouseDetail.province" label="Province" :readonly="!isSuperAdmin" />
-      <q-input class="q-my-md" type="text" v-model="warehouseDetail.postalCode" label="Postal Code" :readonly="!isSuperAdmin" />
-      <q-input class="q-my-md" type="number" v-model="warehouseDetail.lat" label="Latitude" :readonly="!isSuperAdmin" />
-      <q-input class="q-my-md" type="number" v-model="warehouseDetail.lng" label="Longitude" :readonly="!isSuperAdmin" />
-      <!-- <q-input class="q-my-md" type="text" v-model="warehouseDetail.adminWarehouse" label="Admins" /> -->
-      <div v-if="isSuperAdmin">
-        <div>TODO: get admin</div>
+      <div class="row">
         <q-btn
-          class="q-mx-auto q-my-md q-py-xs button-save"
+          flat
           no-caps
-          label="Save"
-          @click="onSubmit"
-          :loading="loadingSubmit"
-          type="submit"
+          class="col-auto btn-back"
+          icon="img:images/icons/back.svg"
+          @click="onClickBackButton"
         />
+        <div style="font-size: 20px; margin-top: 4px">Warehouse Detail</div>
+      </div>
+      <div class="q-ml-md">
+        <q-input class="q-my-md" type="text" v-model="warehouseDetail.name" label="Name" :readonly="!isSuperAdmin" />
+        <q-input class="q-my-md" type="text" v-model="warehouseDetail.description" label="Description" :readonly="!isSuperAdmin" />
+        <q-input class="q-my-md" type="text" v-model="warehouseDetail.street" label="Street" :readonly="!isSuperAdmin" />
+        <q-input class="q-my-md" type="text" v-model="warehouseDetail.city" label="City" :readonly="!isSuperAdmin" />
+        <q-input class="q-my-md" type="text" v-model="warehouseDetail.province" label="Province" :readonly="!isSuperAdmin" />
+        <q-input class="q-my-md" type="text" v-model="warehouseDetail.postalCode" label="Postal Code" :readonly="!isSuperAdmin" />
+        <q-input class="q-my-md" type="number" v-model="warehouseDetail.lat" label="Latitude" :readonly="!isSuperAdmin" />
+        <q-input class="q-my-md" type="number" v-model="warehouseDetail.lng" label="Longitude" :readonly="!isSuperAdmin" />
+        <!-- <q-input class="q-my-md" type="text" v-model="warehouseDetail.adminWarehouse" label="Admins" /> -->
+        <div v-if="isSuperAdmin">
+          <q-btn
+            class="q-mx-auto q-my-md q-py-xs button-save"
+            no-caps
+            label="Save"
+            @click="onSubmit"
+            :loading="loadingSubmit"
+            type="submit"
+          />
+        </div>
       </div>
 
     </div>
@@ -114,13 +118,10 @@ export default {
       const detail = this.warehouseList.find((warehouse) => warehouse.warehouseId === id);
       this.onSuccessGetDetail(detail);
     }
-    console.log(window.localStorage.getItem('roles'))
     if (window.localStorage.getItem('roles') === 'super_admin') {
       console.log('super admin true')
       this.isSuperAdmin = true;
     }
-    // this.$store.dispatch('warehouse/getWarehouseDetail', this.$route.params.id)
-    //   .then(this.onSuccessGetDetail);
   }
 }
 </script>
