@@ -1,3 +1,5 @@
+import { verifyEmail } from "../authentication/actions";
+
 export default function () {
   return {
     authentication: {
@@ -7,6 +9,10 @@ export default function () {
     user: {
       index: '/user',
       register: '/user/register',
+      verifyEmail: '/user/verify-email',
+      googleSignIn: '/user/google-signin',
+      googleRegister: '/user/google-register',
+      googleCheck: '/user/google-check',
       profile: '/user/profile',
       createAdmin: '/user/create-admin',
       updateAdmin: '/user/update-admin',
@@ -14,6 +20,7 @@ export default function () {
       forgotPassword: '/user/forgot-password',
       resetPassword: '/user/reset-password',
       changePassword: '/user/change-password',
+      setPassword: '/user/set-password',
       getAddress: '/user/get-address',
       createAddress: '/user/create-address',
       updateAddress: '/user/update-address',

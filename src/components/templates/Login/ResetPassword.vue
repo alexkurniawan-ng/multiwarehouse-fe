@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 q-mt-xl q-pt-xl">
+  <div class="col-12 q-pt-sm">
     <q-btn
       :to="{ name: 'PageAuthenticationResetPassword' }"
       label="Forgot Password"

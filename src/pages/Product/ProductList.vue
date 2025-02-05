@@ -122,7 +122,7 @@
 </template>
 
 <script>
-import { create } from 'core-js/core/object';
+// import { create } from 'core-js/core/object';
 import { mapState } from 'vuex';
 
 export default {

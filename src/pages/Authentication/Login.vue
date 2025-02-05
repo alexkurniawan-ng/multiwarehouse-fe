@@ -1,6 +1,6 @@
 <template>
   <div class="row q-pa-md" v-if="!validToken">
-    <!-- <TemplateLoginLogo /> -->
+    <TemplateLoginLogo />
     <TemplateLoginForm />
     <TemplateLoginResetPassword />
   </div>
@@ -10,7 +10,7 @@
 import { mapState } from 'vuex';
 import MixinNotification from 'components/mixins/Notification';
 import TemplateLoginForm from 'components/templates/Login/Form';
-// import TemplateLoginLogo from 'components/templates/Login/Logo';
+import TemplateLoginLogo from 'components/templates/Login/Logo';
 import TemplateLoginResetPassword from 'components/templates/Login/ResetPassword';
 
 export default {
@@ -18,7 +18,7 @@ export default {
   mixins: [MixinNotification],
   components: {
     TemplateLoginForm,
-    // TemplateLoginLogo,
+    TemplateLoginLogo,
     TemplateLoginResetPassword,
   },
   computed: {

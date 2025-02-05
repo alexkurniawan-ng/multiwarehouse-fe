@@ -3,6 +3,8 @@ import routeHome from './home';
 import routeLogout from './logout';
 import routeWarehouse from './warehouse';
 import routeProduct from './product';
+import routeRegister from './register';
+import routeVerifyEmail from './verify-email';
 
 const routes = [
   // {
@@ -17,6 +19,8 @@ const routes = [
   routeLogout,
   routeWarehouse,
   routeProduct,
+  routeRegister,
+  routeVerifyEmail,
 
   // Always leave this as last one,
   // but you can also remove it
